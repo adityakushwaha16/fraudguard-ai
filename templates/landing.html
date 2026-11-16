@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero"><div class="container"><div class="row align-items-center g-5">
+  <div class="col-lg-6">
+    <span class="chip reveal"><i class="bi bi-cpu"></i> Machine learning + Explainable AI (SHAP)</span>
+    <h1 class="mt-3 reveal d1">Catch suspicious payments <span class="grad-text">before they cost you</span></h1>
+    <p class="lead muted mt-3 reveal d2">FraudGuard AI scores financial transactions with a model trained on the public PaySim dataset, then shows <em>why</em> a transaction was flagged using SHAP, so every decision can be understood and audited.</p>
+    <div class="d-flex flex-wrap gap-3 mt-4 reveal d3">
+      <a class="btn-fg btn-lg" href="{{ url_for('pages.register_page') }}">Get started <i class="bi bi-arrow-right ms-1"></i></a>
+      <a class="btn-ghost" href="{{ url_for('pages.login_page') }}">I have an account</a>
+    </div>
+    <div class="row mt-4 g-3 reveal d4 muted small">
+      <div class="col-auto"><i class="bi bi-check2-circle text-info"></i> Fraud probability</div>
+      <div class="col-auto"><i class="bi bi-check2-circle text-info"></i> Low / Medium / High risk</div>
+      <div class="col-auto"><i class="bi bi-check2-circle text-info"></i> Per-transaction explanations</div>
+    </div>
+  </div>
+  <div class="col-lg-6 reveal d2">
+    <div class="preview float" role="img" aria-label="Illustration of a fraud analytics dashboard">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="small muted"><i class="bi bi-activity"></i> Risk monitor</span><span class="small muted">Illustrative preview</span></div>
+      <div class="row g-2 mb-3">
+        <div class="col-4"><div class="fg-card p-2 text-center"><div class="small muted">Analyzed</div><b>1,284</b></div></div>
+        <div class="col-4"><div class="fg-card p-2 text-center"><div class="small muted">Flagged</div><b class="text-danger">37</b></div></div>
+        <div class="col-4"><div class="fg-card p-2 text-center"><div class="small muted">Rate</div><b class="text-info">2.9%</b></div></div></div>
+      <div style="height:120px;display:flex;align-items:flex-end">
+        {% for h,d in [(40,0),(65,0.1),(50,0.2),(85,0.3),(60,0.4),(95,0.5),(70,0.6)] %}<span class="bar" style="height:{{h}}%;animation-delay:{{d}}s;width:11%"></span>{% endfor %}</div>
+      <svg viewBox="0 0 200 60" class="w-100 mt-3" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+        <polyline fill="none" stroke="url(#lg)" stroke-width="3" stroke-linecap="round" points="0,45 25,38 50,42 75,25 100,30 125,14 150,22 175,8 200,12"/></svg>
+      <div class="d-flex justify-content-center mt-2"><svg width="86" height="86" viewBox="0 0 100 100" aria-hidden="true"><circle class="pulse-ring" cx="50" cy="50" r="30" fill="none" stroke="#22d3ee" stroke-width="2"/><path d="M50 18l28 10v20c0 18-12 30-28 36C34 78 22 66 22 48V28z" fill="rgba(34,211,238,.12)" stroke="#22d3ee" stroke-width="3"/><path d="M38 50l8 8 16-17" fill="none" stroke="#22d3ee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+  </div>
+</div></div></section>
+
+<section id="features" class="container py-5">
+  <h2 class="text-center fw-bold mb-4">Built for transparent fraud detection</h2>
+  <div class="row g-4">
+    {% for icon,t,d in [('cpu','Real ML model','Logistic Regression, Random Forest and XGBoost are trained and compared; the best by validation PR-AUC is deployed.'),('eye','Explainable by design','SHAP values show which features raised or lowered the risk of each individual transaction.'),('sliders','Tuned threshold','The decision threshold is tuned on validation data to balance missed fraud against false alarms.'),('database','Persistent history','Every analysis is stored per user with search, filters and pagination.'),('bar-chart-line','Live analytics','Charts are computed from your stored transactions, never hard-coded.'),('lock','Private by default','Passwords are hashed and users can only see their own transactions.')] %}
+    <div class="col-md-6 col-lg-4"><div class="fg-card hover h-100"><div class="kpi"><div class="icon"><i class="bi bi-{{icon}}"></i></div></div><h3 class="mt-3">{{t}}</h3><p class="muted mb-0">{{d}}</p></div></div>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="how" class="container py-5">
+  <h2 class="text-center fw-bold mb-4">How it works</h2>
+  <div class="row g-4">
+    {% for n,t,d in [(1,'Enter a transaction','Type, amount, hour of day and the account balances before the transaction.'),(2,'Model scores it','The saved preprocessing pipeline and trained model compute a fraud probability.'),(3,'Threshold decides','A validated threshold turns the probability into Fraudulent or Legitimate, plus a risk level.'),(4,'SHAP explains','Top feature contributions are shown, then saved to your history and dashboard.')] %}
+    <div class="col-md-6 col-lg-3"><div class="fg-card h-100"><div class="step-num">{{n}}</div><h3 class="mt-3">{{t}}</h3><p class="muted mb-0">{{d}}</p></div></div>
+    {% endfor %}
+  </div>
+  <div class="text-center mt-5"><a class="btn-fg" href="{{ url_for('pages.register_page') }}">Create your free account</a></div>
+</section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 reveal">
+    <div><h1 class="h3 fw-bold mb-1">Welcome, {{ current_user.full_name.split(' ')[0] }}</h1><p class="muted mb-0">Live summary of the transactions you have analyzed.</p></div>
+    <a class="btn-fg mt-2 mt-md-0" href="{{ url_for('pages.detect') }}"><i class="bi bi-plus-lg me-1"></i>Analyze transaction</a></div>
+  <div id="modelBanner"></div>
+  <div class="row g-3 mb-3">
+    {% for id,icon,label in [('k-total','receipt','Transactions analyzed'),('k-fraud','exclamation-octagon','Flagged as fraudulent'),('k-legit','check-circle','Legitimate'),('k-rate','percent','Flag rate')] %}
+    <div class="col-6 col-lg-3 reveal d{{loop.index}}"><div class="fg-card hover kpi"><div class="icon"><i class="bi bi-{{icon}}"></i></div><div class="value" id="{{id}}">0</div><div class="label">{{label}}</div></div></div>
+    {% endfor %}
+  </div>
+  <div class="row g-3">
+    <div class="col-lg-8 reveal d2"><div class="fg-card h-100"><h2>Activity (last 14 days with data)</h2><div style="height:280px"><canvas id="trendChart"></canvas></div></div></div>
+    <div class="col-lg-4 reveal d3"><div class="fg-card h-100"><h2>Risk distribution</h2><div style="height:280px"><canvas id="riskChart"></canvas></div></div></div>
+    <div class="col-12 reveal d4"><div class="fg-card"><h2>Recent suspicious transactions</h2><div class="table-responsive"><table class="table fg-table align-middle" id="recentTable"><thead><tr><th>ID</th><th>Date</th><th>Type</th><th>Amount</th><th>Probability</th><th>Risk</th><th></th></tr></thead><tbody></tbody></table></div><div id="recentEmpty" class="empty d-none">No suspicious transactions yet.</div></div></div>
+  </div>
+</div>
+{% endblock %}

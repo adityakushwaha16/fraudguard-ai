@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% block title %}Analyze{% endblock %}
+{% block content %}
+<div class="container py-4"><div class="row g-4">
+  <div class="col-lg-7 reveal"><div class="fg-card">
+    <h1 class="h4 fw-bold mb-1">Analyze a transaction</h1>
+    <p class="muted">Enter only what is known <b>before</b> the transaction executes. Balances <i>after</i> the transaction are deliberately not requested: they are an outcome of the transaction and would leak the answer. Only TRANSFER and CASH_OUT are supported (the only PaySim types that contain fraud).</p>
+    <div id="modelBanner"></div>
+    <form id="detectForm" novalidate>
+      <div class="row g-3">
+        <div class="col-md-6"><label class="form-label" for="type">Transaction type</label><select class="form-select" id="type" name="type"><option>TRANSFER</option><option>CASH_OUT</option></select></div>
+        <div class="col-md-6"><label class="form-label" for="hour_of_day">Hour of day (0-23)</label><input class="form-control" type="number" id="hour_of_day" name="hour_of_day" min="0" max="23" step="1" value="12" required><div class="form-text">PaySim uses hourly steps; hour of day = step mod 24.</div></div>
+        <div class="col-md-12"><label class="form-label" for="amount">Amount</label><input class="form-control" type="number" step="0.01" min="0.01" id="amount" name="amount" required></div>
+        <div class="col-md-6"><label class="form-label" for="oldbalanceOrg">Sender balance before</label><input class="form-control" type="number" step="0.01" min="0" id="oldbalanceOrg" name="oldbalanceOrg" required></div>
+        <div class="col-md-6"><label class="form-label" for="oldbalanceDest">Receiver balance before</label><input class="form-control" type="number" step="0.01" min="0" id="oldbalanceDest" name="oldbalanceDest" required></div>
+      </div>
+      <div class="alert alert-danger py-2 mt-3 d-none" id="formError" role="alert"></div>
+      <div class="d-flex flex-wrap gap-2 mt-4"><button class="btn-fg" type="submit" id="submitBtn"><i class="bi bi-shield-check me-1"></i>Analyze for fraud</button>
+        <button class="btn-ghost" type="button" data-example="routine">Example input: routine cash-out</button>
+        <button class="btn-ghost" type="button" data-example="drain">Example input: account-draining transfer</button></div>
+      <p class="disclaimer mt-3 mb-0">The example buttons only pre-fill form fields. The result always comes from the trained model.</p>
+    </form></div></div>
+  <div class="col-lg-5 reveal d2"><div class="fg-card"><h2><i class="bi bi-info-circle me-1"></i>What you will get</h2>
+    <ul class="muted mb-0"><li>Prediction: Fraudulent or Legitimate</li><li>Fraud probability and Low/Medium/High risk</li><li>SHAP-based reasons for the score</li><li>The result is saved to your history</li></ul></div></div>
+</div></div>
+<div class="overlay" id="overlay" role="status" aria-live="polite"><div class="text-center"><div class="scanner"></div><p class="mt-3 muted">Analyzing transaction...</p></div></div>
+{% endblock %}

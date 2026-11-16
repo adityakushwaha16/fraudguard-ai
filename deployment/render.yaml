@@ -1,0 +1,15 @@
+# Render Blueprint (copy to repo root as render.yaml). Check Render's current free-tier limits before relying on it.
+services:
+  - type: web
+    name: fraudguard-ai
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn run:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase: {name: fraudguard-db, property: connectionString}
+databases:
+  - name: fraudguard-db
+    plan: free

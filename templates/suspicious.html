@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Suspicious{% endblock %}
+{% block content %}
+<div class="container py-4"><div class="d-flex flex-wrap justify-content-between align-items-center mb-3 reveal"><div><h1 class="h3 fw-bold mb-1">Suspicious transaction monitor</h1><p class="muted mb-0">Transactions the model flagged as fraudulent or Medium/High risk, highest probability first. These are risk estimates, not confirmed fraud.</p></div>
+  <div class="btn-group mt-2" role="group" aria-label="Risk filter"><button class="btn-ghost active" data-risk="">All</button><button class="btn-ghost" data-risk="High">High</button><button class="btn-ghost" data-risk="Medium">Medium</button></div></div>
+  <div class="fg-card reveal d1"><div class="table-responsive"><table class="table fg-table align-middle" id="suspTable"><thead><tr><th>ID</th><th>Date</th><th>Type</th><th>Amount</th><th>Prediction</th><th>Probability</th><th>Risk</th><th></th></tr></thead><tbody></tbody></table></div><div id="suspEmpty" class="empty d-none">Nothing suspicious so far.</div></div></div>
+{% endblock %}

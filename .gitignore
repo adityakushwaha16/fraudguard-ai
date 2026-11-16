@@ -1,0 +1,18 @@
+.env
+venv/
+__pycache__/
+*.pyc
+*.db
+datasets/*.csv
+.pytest_cache/
+instance/
+models_smoke_test/
+# NOTE: models/*.joblib are NOT ignored on purpose, so the trained model can be committed and deployed.
+
+# Local backups and editor settings
+models_backup_before_chrono/
+.vscode/
+.idea/
+
+# Local training backup
+ml/train_backup.py

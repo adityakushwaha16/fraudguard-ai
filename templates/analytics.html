@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Analytics{% endblock %}
+{% block content %}
+<div class="container py-4"><h1 class="h3 fw-bold mb-3 reveal">Fraud analytics</h1>
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-4 reveal d1"><div class="fg-card h-100"><h2>Fraudulent vs legitimate</h2><div style="height:260px"><canvas id="c-split"></canvas></div></div></div>
+    <div class="col-md-6 col-lg-8 reveal d2"><div class="fg-card h-100"><h2>Flagged transactions over time</h2><div style="height:260px"><canvas id="c-trend"></canvas></div></div></div>
+    <div class="col-md-6 col-lg-4 reveal d1"><div class="fg-card h-100"><h2>Risk distribution</h2><div style="height:260px"><canvas id="c-risk"></canvas></div></div></div>
+    <div class="col-md-6 col-lg-4 reveal d2"><div class="fg-card h-100"><h2>Amount ranges</h2><div style="height:260px"><canvas id="c-amount"></canvas></div></div></div>
+    <div class="col-md-6 col-lg-4 reveal d3"><div class="fg-card h-100"><h2>Fraud probability histogram</h2><div style="height:260px"><canvas id="c-hist"></canvas></div></div></div>
+    <div class="col-12 reveal d3"><div class="fg-card"><h2>By transaction type</h2><div style="height:240px"><canvas id="c-type"></canvas></div><p class="muted mb-0 mt-2" id="avgNote"></p></div></div>
+    <div class="col-12 reveal d4"><div class="fg-card"><h2><i class="bi bi-cpu me-1"></i>Deployed model (from training run)</h2><div id="modelPanel" class="muted">Loading...</div>
+      <div class="row g-3 mt-2" id="shapImgs"></div></div></div>
+  </div></div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}History{% endblock %}
+{% block content %}
+<div class="container py-4"><h1 class="h3 fw-bold mb-3 reveal">Transaction history</h1>
+  <div class="fg-card mb-3 reveal d1"><form id="filterForm" class="row g-2 align-items-end">
+    <div class="col-md-3"><label class="form-label" for="q">Search (ID or type)</label><input class="form-control" id="q" placeholder="e.g. 12 or TRANSFER"></div>
+    <div class="col-6 col-md-2"><label class="form-label" for="label">Prediction</label><select class="form-select" id="label"><option value="">All</option><option>Fraudulent</option><option>Legitimate</option></select></div>
+    <div class="col-6 col-md-2"><label class="form-label" for="risk">Risk</label><select class="form-select" id="risk"><option value="">All</option><option>Low</option><option>Medium</option><option>High</option></select></div>
+    <div class="col-6 col-md-2"><label class="form-label" for="date_from">From</label><input class="form-control" type="date" id="date_from"></div>
+    <div class="col-6 col-md-2"><label class="form-label" for="date_to">To</label><input class="form-control" type="date" id="date_to"></div>
+    <div class="col-md-1 d-grid"><button class="btn-fg" type="submit" aria-label="Apply filters"><i class="bi bi-funnel"></i></button></div></form></div>
+  <div class="fg-card reveal d2"><div class="table-responsive"><table class="table fg-table align-middle" id="histTable"><thead><tr><th>ID</th><th>Date</th><th>Type</th><th>Amount</th><th>Prediction</th><th>Probability</th><th>Risk</th><th></th></tr></thead><tbody></tbody></table></div>
+    <div id="histEmpty" class="empty d-none">No transactions match.</div>
+    <nav class="d-flex justify-content-between align-items-center mt-3" aria-label="Pagination"><span class="muted small" id="histInfo"></span><ul class="pagination mb-0" id="pager"></ul></nav></div>
+</div>
+{% endblock %}

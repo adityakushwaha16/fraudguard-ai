@@ -1,0 +1,197 @@
+{
+  "selected": "Random Forest",
+  "models": {
+    "Logistic Regression": {
+      "best_params": {
+        "C": 10
+      },
+      "validation": {
+        "threshold": 0.9954609970747023,
+        "accuracy": 0.9994916632777552,
+        "precision": 0.8840579710144928,
+        "recall": 0.7349397590361446,
+        "f1": 0.8026315789473685,
+        "roc_auc": 0.9996418231935429,
+        "pr_auc": 0.8297827837358159,
+        "confusion_matrix": {
+          "tn": 58925,
+          "fp": 8,
+          "fn": 22,
+          "tp": 61
+        }
+      },
+      "test": {
+        "threshold": 0.9954609970747023,
+        "accuracy": 0.9974761403332832,
+        "precision": 0.9874213836477987,
+        "recall": 0.6811279826464208,
+        "f1": 0.8061617458279846,
+        "roc_auc": 0.9987079010990971,
+        "pr_auc": 0.9360133197763588,
+        "confusion_matrix": {
+          "tn": 59364,
+          "fp": 4,
+          "fn": 147,
+          "tp": 314
+        }
+      },
+      "train_seconds": 1.4
+    },
+    "Random Forest": {
+      "best_params": {
+        "n_estimators": 100,
+        "min_samples_leaf": 1,
+        "max_depth": 8
+      },
+      "validation": {
+        "threshold": 0.856405279554298,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0,
+        "confusion_matrix": {
+          "tn": 58933,
+          "fp": 0,
+          "fn": 0,
+          "tp": 83
+        }
+      },
+      "test": {
+        "threshold": 0.856405279554298,
+        "accuracy": 0.9995319995319996,
+        "precision": 1.0,
+        "recall": 0.9392624728850325,
+        "f1": 0.9686800894854586,
+        "roc_auc": 0.9984108458700627,
+        "pr_auc": 0.9961703465314822,
+        "confusion_matrix": {
+          "tn": 59368,
+          "fp": 0,
+          "fn": 28,
+          "tp": 433
+        }
+      },
+      "train_seconds": 10.0
+    },
+    "XGBoost": {
+      "best_params": {
+        "subsample": 1.0,
+        "n_estimators": 300,
+        "max_depth": 8,
+        "learning_rate": 0.2
+      },
+      "validation": {
+        "threshold": 0.9511408805847168,
+        "accuracy": 0.9998305544259184,
+        "precision": 0.9397590361445783,
+        "recall": 0.9397590361445783,
+        "f1": 0.9397590361445783,
+        "roc_auc": 0.9999840537723153,
+        "pr_auc": 0.9892730670778839,
+        "confusion_matrix": {
+          "tn": 58928,
+          "fp": 5,
+          "fn": 5,
+          "tp": 78
+        }
+      },
+      "test": {
+        "threshold": 0.9511408805847168,
+        "accuracy": 0.999431713717428,
+        "precision": 0.9863325740318907,
+        "recall": 0.9392624728850325,
+        "f1": 0.9622222222222222,
+        "roc_auc": 0.9997609490976682,
+        "pr_auc": 0.9949370846536466,
+        "confusion_matrix": {
+          "tn": 59362,
+          "fp": 6,
+          "fn": 28,
+          "tp": 433
+        }
+      },
+      "train_seconds": 4.6
+    }
+  },
+  "shap": {
+    "available": true,
+    "explainer": "tree",
+    "global_importance": [
+      {
+        "feature": "amount_to_orig_balance",
+        "label": "Amount as a share of sender balance",
+        "mean_abs_shap": 0.2134449515033341
+      },
+      {
+        "feature": "drains_origin",
+        "label": "Amount would empty the sender account",
+        "mean_abs_shap": 0.12062260181871702
+      },
+      {
+        "feature": "oldbalanceOrg",
+        "label": "Sender balance before transaction",
+        "mean_abs_shap": 0.09895159595313144
+      },
+      {
+        "feature": "amount",
+        "label": "Transaction amount",
+        "mean_abs_shap": 0.030700050693671817
+      },
+      {
+        "feature": "oldbalanceDest",
+        "label": "Receiver balance before transaction",
+        "mean_abs_shap": 0.029452748524387947
+      },
+      {
+        "feature": "orig_balance_zero",
+        "label": "Sender balance is zero",
+        "mean_abs_shap": 0.02171348563112196
+      },
+      {
+        "feature": "dest_balance_zero",
+        "label": "Receiver balance is zero",
+        "mean_abs_shap": 0.01902079934555986
+      },
+      {
+        "feature": "hour_of_day",
+        "label": "Hour of day",
+        "mean_abs_shap": 0.014074311047853939
+      },
+      {
+        "feature": "type_TRANSFER",
+        "label": "Type is TRANSFER",
+        "mean_abs_shap": 0.005885377392543987
+      },
+      {
+        "feature": "type_CASH_OUT",
+        "label": "Type is CASH_OUT",
+        "mean_abs_shap": 0.004815200559421781
+      }
+    ]
+  },
+  "synthetic": false,
+  "evaluation_protocol": "chronological_by_paysim_step",
+  "production_model_refit_on_train_plus_validation": true,
+  "test_set_used_for_fitting_or_threshold_selection": false,
+  "split": {
+    "method": "chronological_by_whole_step_values",
+    "train": 181155,
+    "validation": 59016,
+    "test": 59829,
+    "train_steps": {
+      "min": 1,
+      "max": 281
+    },
+    "validation_steps": {
+      "min": 282,
+      "max": 354
+    },
+    "test_steps": {
+      "min": 355,
+      "max": 743
+    },
+    "production_fit_rows": 240171
+  }
+}

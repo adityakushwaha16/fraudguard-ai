@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Result #{{ tx_id }}{% endblock %}
+{% block bodyattrs %}data-tx="{{ tx_id }}"{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <a class="muted small" href="{{ url_for('pages.history') }}"><i class="bi bi-arrow-left"></i> Back to history</a>
+  <div id="resultRoot" class="mt-3"><div class="empty">Loading...</div></div>
+</div>
+{% endblock %}

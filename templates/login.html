@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<div class="container auth-wrap"><div class="auth-card reveal"><div class="fg-card p-4">
+  <div class="text-center mb-4"><div class="brand justify-content-center mb-2"><span class="logo"><i class="bi bi-shield-check"></i></span></div>
+  <h1 class="h3 fw-bold">Welcome back</h1><p class="muted mb-0">Log in to your dashboard</p></div>
+  <form id="authForm" data-mode="login" novalidate>
+    
+    <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control" type="email" id="email" name="email" required autocomplete="email"></div>
+    <div class="mb-3"><label class="form-label" for="password">Password</label><input class="form-control" type="password" id="password" name="password" required autocomplete="current-password"></div>
+    <div class="alert alert-danger py-2 d-none" id="formError" role="alert"></div>
+    <button class="btn-fg w-100" type="submit">Log in</button>
+  </form>
+  <p class="text-center mt-3 mb-0 muted">No account? <a href="{{ url_for('pages.register_page') }}">Register</a></p>
+</div></div></div>
+{% endblock %}

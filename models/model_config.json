@@ -1,0 +1,93 @@
+{
+  "model_name": "Random Forest",
+  "model_version": "20261116-220202",
+  "synthetic": false,
+  "dataset": "paysim.csv",
+  "threshold": 0.856405279554298,
+  "beta": 1.0,
+  "features": {
+    "all": [
+      "type",
+      "amount",
+      "oldbalanceOrg",
+      "oldbalanceDest",
+      "hour_of_day",
+      "amount_to_orig_balance",
+      "drains_origin",
+      "orig_balance_zero",
+      "dest_balance_zero"
+    ],
+    "categorical": [
+      "type"
+    ],
+    "numeric": [
+      "amount",
+      "oldbalanceOrg",
+      "oldbalanceDest",
+      "hour_of_day",
+      "amount_to_orig_balance",
+      "drains_origin",
+      "orig_balance_zero",
+      "dest_balance_zero"
+    ],
+    "input_columns": [
+      "type",
+      "amount",
+      "oldbalanceOrg",
+      "oldbalanceDest",
+      "hour_of_day"
+    ],
+    "allowed_types": [
+      "TRANSFER",
+      "CASH_OUT"
+    ],
+    "excluded_columns": {
+      "newbalanceOrig": "post-transaction sender balance (outcome of the transaction)",
+      "newbalanceDest": "post-transaction receiver balance (outcome of the transaction)",
+      "isFlaggedFraud": "output of the simulator's own rule-based fraud detector",
+      "nameOrig": "account identifier (memorisation, not a general pattern)",
+      "nameDest": "account identifier (memorisation, not a general pattern)",
+      "step": "absolute simulation clock; only its hour of day (step % 24) is kept"
+    }
+  },
+  "leakage_policy": "pre-transaction information only",
+  "evaluation_protocol": "chronological_by_paysim_step",
+  "transformed_feature_names": [
+    "amount",
+    "oldbalanceOrg",
+    "oldbalanceDest",
+    "hour_of_day",
+    "amount_to_orig_balance",
+    "drains_origin",
+    "orig_balance_zero",
+    "dest_balance_zero",
+    "type_TRANSFER",
+    "type_CASH_OUT"
+  ],
+  "explainer": "tree",
+  "class_balance": {
+    "train_fraud": 346,
+    "train_total": 181155,
+    "production_fit_fraud": 429,
+    "production_fit_total": 240171
+  },
+  "split": {
+    "method": "chronological_by_whole_step_values",
+    "train": 181155,
+    "validation": 59016,
+    "test": 59829,
+    "train_steps": {
+      "min": 1,
+      "max": 281
+    },
+    "validation_steps": {
+      "min": 282,
+      "max": 354
+    },
+    "test_steps": {
+      "min": 355,
+      "max": 743
+    },
+    "production_fit_rows": 240171
+  }
+}
